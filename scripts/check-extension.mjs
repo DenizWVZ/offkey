@@ -30,7 +30,8 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 
 const CHROME = process.env.CHROME ?? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
-const EXTENSION = new URL('../dist-extension', import.meta.url).pathname
+// EXTENSION=<folder> checks another copy, e.g. an unzipped test version from `npm run zip`.
+const EXTENSION = process.env.EXTENSION ?? new URL('../dist-extension', import.meta.url).pathname
 const [video = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', ...steps] = process.argv.slice(2)
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 

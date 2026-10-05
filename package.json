@@ -14,6 +14,7 @@
     "check": "node --experimental-websocket --no-warnings scripts/check-playback.mjs",
     "check:ext": "node scripts/check-extension.mjs",
     "icons": "node --experimental-websocket --no-warnings scripts/make-icons.mjs",
+    "zip": "node scripts/zip-extension.mjs",
     "postinstall": "node scripts/patch-signalsmith.mjs"
   },
   "dependencies": {

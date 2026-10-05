@@ -10,8 +10,8 @@ import styles from './Demo.module.css'
 // The public demo page: the widget on a neutral page, playing a song the visitor picks from
 // their own computer (nothing is uploaded). Built with `npm run build:demo`.
 
-// Link to the zipped Chrome extension (e.g. a Google Drive share link). Empty = the section is hidden.
-const EXTENSION_ZIP_URL = ''
+// Link to the zipped Chrome extension (the latest GitHub release, made with `npm run zip`). Empty = the section is hidden.
+const EXTENSION_ZIP_URL = 'https://github.com/DenizWVZ/offkey/releases/latest'
 
 const NO_SONG: Track = { artist: 'Offkey demo', title: 'Choose a song to try it', artwork: PLACEHOLDER_ARTWORK }
 
@@ -99,11 +99,12 @@ export function Demo() {
             <summary>Get the Chrome extension (works on YouTube and YouTube Music)</summary>
             <ol>
               <li>
-                <a href={EXTENSION_ZIP_URL} target="_blank" rel="noreferrer">Download the zip</a> and unzip it.
+                <a href={EXTENSION_ZIP_URL} target="_blank" rel="noreferrer">Download the latest offkey zip</a> and unzip it somewhere it can stay, like Documents.
               </li>
               <li>Open chrome://extensions and turn on Developer mode (top right).</li>
-              <li>Click Load unpacked and choose the unzipped folder.</li>
+              <li>Click Load unpacked and choose the offkey folder.</li>
               <li>Pin Offkey, open a song on YouTube and click its icon.</li>
+              <li>To update later: replace the folder's contents with a newer zip, then click reload on Offkey's card.</li>
             </ol>
           </details>
         )}

@@ -15,7 +15,24 @@ no audio is saved, exported or uploaded.
 
 **Status:** on its way to the Chrome Web Store. A side project, designed and built with AI (Claude Code).
 
-## Run it yourself
+## Try it
+
+Until Offkey is in the Chrome Web Store, you can install a test version by hand (in Chrome, or another
+Chromium browser like Edge, Brave or Arc):
+
+1. Download the latest `offkey-<version>.zip` from [Releases](https://github.com/DenizWVZ/offkey/releases/latest).
+2. Unzip it somewhere it can stay, like your Documents folder (not Downloads, which tends to get cleaned up).
+   You'll get a folder called `offkey`.
+3. Open `chrome://extensions`, turn on **Developer mode** (top right), click **Load unpacked** and choose the `offkey` folder.
+4. Pin Offkey from the puzzle-piece menu in the toolbar. Open a song on YouTube or YouTube Music and click the Offkey button.
+
+Chrome may remind you that a Developer mode extension is installed; that's expected for a test version.
+
+**Updating:** test versions don't update by themselves. Download the new zip, replace the contents of your
+`offkey` folder with the new ones (same place), then click the reload arrow on Offkey's card in
+`chrome://extensions`. Your settings and cues are kept.
+
+## Build it yourself
 
 Needs Node.js and Google Chrome.
 

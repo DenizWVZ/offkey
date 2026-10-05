@@ -56,10 +56,9 @@ this file holds everything still to do.
 - **Model: bundled** (decided 2026-10-02). Vocals work the first time and offline, with nothing to host; the
   model is only loaded the first time Vocals is used, so performance is the same. The zip is 33 MB.
   If this ever changes, update the remote-code answer, reviewer notes and privacy policy in listing.md.
-- **How testers install it** (open; recommended: submit as Unlisted first, then switch to Public).
-  - Zip + Load unpacked: needs Developer mode, Chrome shows warnings, no automatic updates.
-    `EXTENSION_ZIP_URL` in `src/demo/Demo.tsx` is still empty.
-  - Unlisted store listing: same review, normal install, automatic updates. Doubles as a dry run.
+- **How testers install it** (decided 2026-10-05): first round with a ready-made zip on GitHub Releases
+  (`npm run zip`, install and update steps in the README; updates by hand). Then a **Private (trusted testers)**
+  store listing, which updates testers automatically; switch it to Public when ready.
 
 ## Already fine
 
