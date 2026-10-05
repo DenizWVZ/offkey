@@ -1,0 +1,43 @@
+/* Fills the row's height, so the whole strip around the dots is clickable. */
+.slider {
+  flex: 1;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+  touch-action: pan-y; /* horizontal drags move the slider instead of scrolling the page */
+  border-radius: var(--radius-panel);
+}
+
+.slider:focus {
+  outline: none;
+}
+
+.slider:focus-visible {
+  outline: var(--size-focus-ring) solid var(--color-accent);
+}
+
+.dot {
+  flex-shrink: 0;
+  width: var(--size-dot);
+  height: var(--size-dot); /* Motion animates this: dot → pill → tall pill */
+  border-radius: var(--radius-round);
+  background: var(--color-dot);
+  transition: background-color var(--motion-color-fade-ms) var(--motion-color-fade-easing);
+}
+
+.center {
+  background: var(--color-dot-center);
+}
+
+.active {
+  background: var(--color-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot {
+    transition: none;
+  }
+}

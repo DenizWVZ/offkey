@@ -1,0 +1,32 @@
+.row {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  height: var(--size-panel-height);
+  padding: 0 var(--space-row-padding-right) 0 var(--space-row-padding-left);
+  background: var(--color-panel);
+  border-radius: var(--radius-panel);
+}
+
+/* Disabled: the row itself keeps its colour; only what's on it fades. */
+.disabled .label,
+.disabled .control {
+  opacity: var(--effect-disabled-opacity);
+}
+
+.label {
+  flex-shrink: 0;
+  width: var(--size-label-width);
+  font-size: var(--font-size-label);
+  letter-spacing: var(--font-tracking);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.control {
+  flex: 1;
+  align-self: stretch; /* full row height, so the dots' click area is generous */
+  display: flex;
+  align-items: center;
+  gap: var(--space-slider-badge-gap);
+}

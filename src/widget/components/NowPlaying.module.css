@@ -1,0 +1,60 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-now-playing-row-gap);
+  padding: var(--space-now-playing-padding) var(--space-now-playing-padding) var(--space-now-playing-padding-bottom);
+  background: var(--color-panel);
+  border-radius: var(--radius-panel);
+}
+
+.top {
+  display: flex;
+  gap: var(--space-now-playing-gap);
+}
+
+.artwork {
+  flex-shrink: 0;
+  display: block;
+  width: var(--size-artwork);
+  height: var(--size-artwork);
+  object-fit: cover;
+  border-radius: var(--radius-artwork);
+}
+
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0; /* lets long titles be cut off instead of widening the panel */
+}
+
+.metadata {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-metadata-gap);
+  padding-bottom: var(--space-metadata-bottom);
+}
+
+.artist,
+.title {
+  margin: 0;
+  line-height: var(--font-line-height);
+  letter-spacing: var(--font-tracking);
+}
+
+/* A long name fades out on the right instead of ending in "…". (The title does the same, and also
+   scrolls: see ScrollingTitle.) */
+.artist {
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to left, transparent, #000 var(--size-title-fade));
+  mask-image: linear-gradient(to left, transparent, #000 var(--size-title-fade));
+  font-size: var(--font-size-artist);
+  color: var(--color-text-muted);
+}
+
+.title {
+  font-size: var(--font-size-title);
+  color: var(--color-text);
+}

@@ -1,0 +1,177 @@
+.panel {
+  background: var(--color-panel);
+  border-radius: var(--radius-panel);
+}
+
+/* The row itself: same height, label and colour as Speed and Vocals, a caret where the value would be. */
+.header {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: var(--size-panel-height);
+  margin: 0;
+  padding: 0 var(--space-slider-value-right) 0 var(--space-slider-label-left);
+  border: none;
+  border-radius: var(--radius-panel);
+  background: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+.header:focus {
+  outline: none;
+}
+
+.header:focus-visible {
+  outline: var(--size-focus-ring) solid var(--color-accent);
+}
+
+.label {
+  flex: 1;
+  text-align: left;
+  font-size: var(--font-size-label);
+  letter-spacing: var(--font-tracking);
+  color: var(--color-text-muted);
+}
+
+/* Collapsed: one small dot per set cue, the size of the Pitch dots. */
+.mini {
+  display: flex;
+  gap: var(--space-cue-mini-gap);
+  margin-right: var(--space-cue-mini-caret-gap);
+  transition: opacity var(--motion-cue-mini-fade-ms) ease-out;
+}
+
+.miniHidden {
+  opacity: 0;
+}
+
+.miniDot {
+  width: var(--size-dot);
+  height: var(--size-dot);
+  border-radius: var(--radius-round);
+}
+
+.caret {
+  width: var(--size-caret-width);
+  height: var(--size-caret-height);
+  fill: none;
+  stroke: var(--color-cue-caret);
+  stroke-width: var(--size-caret-stroke);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform var(--motion-caret-turn-ms) ease-out;
+}
+
+/* Open: points up. */
+.caretOpen {
+  transform: rotate(180deg);
+}
+
+.body {
+  overflow: hidden;
+}
+
+.dots {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-cues-top) var(--space-cues-side) var(--space-cues-bottom);
+}
+
+/* Disabled (e.g. during an ad): like the other rows, the row keeps its colour; what's on it fades. */
+.disabled .header,
+.disabled .dots {
+  opacity: var(--effect-disabled-opacity);
+}
+
+/* The caret takes the grey of the other rows' values, so it fades to the same shade. */
+.disabled .caret {
+  stroke: var(--color-text-muted);
+}
+
+/* A cue dot. Empty: gray, darker under the pointer. Set: its colour (.fill) with its number, a little darker under the pointer.
+   Holding a set one to reset shows the .halo (its colour, lighter, at full size) while the .fill shrinks inside it. */
+.dot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-cue-dot);
+  height: var(--size-cue-dot);
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-round);
+  background: var(--color-cue-empty);
+  cursor: pointer;
+  overflow: hidden;
+  transition: background-color var(--motion-cue-empty-fade-ms) var(--motion-color-fade-easing);
+}
+
+.dot:hover {
+  background: var(--color-cue-empty-hover);
+}
+
+.set,
+.set:hover {
+  background: transparent;
+}
+
+.fill,
+.halo {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-round);
+}
+
+.fill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cue);
+  transition: background-color var(--motion-color-fade-ms) var(--motion-color-fade-easing);
+}
+
+.dot:hover .fill {
+  background: color-mix(in srgb, var(--cue) var(--effect-cue-hover-shade), black);
+}
+
+.halo {
+  background: color-mix(in srgb, var(--cue) var(--effect-cue-halo-shade), transparent);
+  opacity: 0;
+}
+
+.dot:focus {
+  outline: none;
+}
+
+.dot:focus-visible {
+  outline: var(--size-focus-ring) solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.number {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-cue);
+  line-height: 1;
+  color: color-mix(in srgb, var(--cue) var(--effect-cue-number-shade), black);
+}
+
+/* White over the dot, faded in and out by CuesRow.tsx: the lighter flash. */
+.flash {
+  position: absolute;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot,
+  .fill,
+  .mini,
+  .caret {
+    transition: none;
+  }
+}

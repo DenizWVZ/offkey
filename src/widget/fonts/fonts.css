@@ -1,0 +1,17 @@
+/* Geist Medium, bundled locally (SIL Open Font License) so it loads on any page. */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./geist-latin-500-normal.woff2') format('woff2');
+}
+
+/* Geist Mono Medium, for the times under the player bar (same licence). */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./geist-mono-latin-500-normal.woff2') format('woff2');
+}

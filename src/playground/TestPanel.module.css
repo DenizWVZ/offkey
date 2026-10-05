@@ -1,0 +1,204 @@
+/* Playground only, not part of the widget: plain developer styling. */
+.panel {
+  position: fixed;
+  top: 16px;
+  left: 404px; /* just right of the widget */
+  width: 300px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  background: rgba(20, 20, 20, 0.92);
+  color: #eee;
+  font: 12px/1.4 system-ui, sans-serif;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+}
+
+.docked {
+  position: static;
+  box-sizing: border-box;
+  width: auto;
+  margin-top: 8px;
+}
+
+.panel h2 {
+  margin: 0 0 8px;
+  font-size: 13px;
+}
+
+.panel dl {
+  margin: 0 0 10px;
+}
+
+.panel dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 2px 0;
+}
+
+.panel dt {
+  color: #999;
+}
+
+.panel dd {
+  margin: 0;
+  text-align: right;
+}
+
+.switch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 6px;
+}
+
+.switch span {
+  color: #999;
+}
+
+.switch button {
+  margin-left: 4px;
+  padding: 3px 8px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background: transparent;
+  color: #ccc;
+  font: inherit;
+  cursor: pointer;
+}
+
+.switch button.on {
+  background: #f67328;
+  border-color: #f67328;
+  color: #111;
+}
+
+/* Glow tuning */
+.glow {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #333;
+}
+
+.range {
+  display: grid;
+  grid-template-columns: 110px 1fr 52px;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.range span {
+  color: #999;
+}
+
+.range input {
+  width: 100%;
+  accent-color: #f67328;
+}
+
+.range output {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.colours {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.colours span {
+  color: #999;
+}
+
+.colours input {
+  width: 26px;
+  height: 22px;
+  margin-left: 4px;
+  padding: 0;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background: none;
+  cursor: pointer;
+}
+
+.actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.actions button {
+  flex: 1;
+  padding: 5px 8px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background: transparent;
+  color: #ccc;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Cue dot tuning */
+.group h3 {
+  margin: 12px 0 0;
+  font-size: 11px;
+  font-weight: 600;
+  color: #ccc;
+}
+
+.chips {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 6px;
+}
+
+.chips span {
+  color: #999;
+}
+
+.chips button {
+  width: 28px;
+  height: 28px;
+  margin-left: 4px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  background: var(--chip);
+  color: #111;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.chips button.on {
+  border-color: #fff;
+}
+
+.curve {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 6px;
+}
+
+.curve span {
+  color: #999;
+}
+
+.curve div {
+  display: flex;
+  gap: 4px;
+}
+
+.curve input {
+  width: 42px;
+  padding: 2px 3px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background: transparent;
+  color: #eee;
+  font: inherit;
+}

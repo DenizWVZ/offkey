@@ -1,0 +1,42 @@
+.badge {
+  flex-shrink: 0;
+  padding: 0;
+  border: none;
+  font: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-badge); /* Motion widens it for two digits */
+  height: var(--size-badge);
+  border-radius: var(--radius-round);
+  background: var(--color-badge);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-badge);
+  line-height: var(--font-line-height);
+  letter-spacing: var(--font-tracking);
+  font-variant-numeric: tabular-nums;
+  transition:
+    background-color var(--motion-color-fade-ms) var(--motion-color-fade-easing),
+    color var(--motion-color-fade-ms) var(--motion-color-fade-easing);
+}
+
+.changed {
+  background: var(--color-badge-active);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.badge:focus {
+  outline: none;
+}
+
+.badge:focus-visible {
+  outline: var(--size-focus-ring) solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badge {
+    transition: none;
+  }
+}

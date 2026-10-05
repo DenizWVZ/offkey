@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-extension/
+dist-demo/
+build/
+
+# Secrets and local settings
+.env*
+
+# Logs
+*.log
+
+# Local test media for the playground (a copyrighted song, a screenshot): kept on this computer only
+Resources/
+
+# Design references (Figma exports, plus third-party images used for inspiration): kept on this computer only
+References/
+
+# The AI model (downloaded, too big for git; see scripts/fetch-model.mjs)
+public/models/

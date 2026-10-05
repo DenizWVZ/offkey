@@ -1,0 +1,265 @@
+/* DialKit's slider, styled with our tokens. DialKit's own stylesheet isn't loaded;
+   these rules style its class names (.dialkit-slider-…) inside this row only. */
+
+.root {
+  position: relative;
+  height: var(--size-panel-height);
+  border-radius: var(--radius-panel);
+  background: var(--color-panel);
+  font-size: var(--font-size-label);
+  letter-spacing: var(--font-tracking);
+  --dodge: 1; /* handle fade while it passes the label or number */
+  --busy: 1; /* label, handle and number fade while working */
+}
+
+.dodge {
+  --dodge: var(--effect-handle-dodge-opacity);
+}
+
+.busy {
+  --busy: var(--effect-busy-opacity);
+}
+
+/* Disabled: the row itself keeps its colour; only what's on it (fill, handle, label, number) fades. */
+.disabled :global(.dialkit-slider),
+.disabled .value {
+  opacity: var(--effect-disabled-opacity);
+}
+
+.root :global(.dialkit-slider-wrapper) {
+  position: relative;
+  height: 100%;
+}
+
+.root :global(.dialkit-slider) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-panel);
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  touch-action: none;
+}
+
+.root :global(.dialkit-slider:focus) {
+  outline: none;
+}
+
+.root :global(.dialkit-slider:focus-visible) {
+  outline: var(--size-focus-ring) solid var(--color-accent);
+}
+
+.root :global(.dialkit-slider-hashmarks) {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.root :global(.dialkit-slider-hashmark) {
+  position: absolute;
+  top: 50%;
+  width: var(--size-tick-width);
+  height: var(--size-tick-height);
+  border-radius: var(--radius-round);
+  transform: translate(-50%, -50%);
+  background: transparent;
+  transition: background-color var(--motion-tick-fade-ms);
+}
+
+.root :global(.dialkit-slider-active .dialkit-slider-hashmark) {
+  background: var(--color-slider-tick);
+}
+
+.noTicks :global(.dialkit-slider-hashmarks) {
+  display: none;
+}
+
+.root :global(.dialkit-slider-fill) {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: var(--radius-fill);
+  background: var(--color-slider-fill);
+  pointer-events: none;
+}
+
+/* DialKit places the handle's left edge 9px inside the fill's edge; this moves it to our inset.
+   DialKit also hides the handle until hover (inline opacity and scale); here it always shows. */
+.root :global(.dialkit-slider-handle) {
+  position: absolute;
+  top: 50%;
+  width: var(--size-handle-width);
+  height: var(--size-handle-height);
+  margin-left: calc(9px - var(--space-fill-handle-inset) - var(--size-handle-width));
+  border-radius: var(--radius-round);
+  background: var(--color-handle);
+  pointer-events: none;
+  opacity: 1 !important;
+  transform: translateY(-50%) !important;
+  filter: opacity(var(--dodge)) opacity(var(--busy));
+  transition:
+    height var(--motion-handle-dodge-ms) ease-out,
+    filter var(--motion-handle-fade-ms) ease-out;
+}
+
+.dodge :global(.dialkit-slider-handle) {
+  height: var(--size-handle-dodge-height);
+}
+
+.root :global(.dialkit-slider-label) {
+  position: absolute;
+  left: var(--space-slider-label-left);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  pointer-events: none;
+  filter: opacity(var(--busy));
+  transition: filter var(--motion-color-fade-ms) ease-out;
+}
+
+/* DialKit's own number is replaced by the reset button below (it stays in place, unseen,
+   so DialKit's measurements still work). */
+.root :global(.dialkit-slider-value) {
+  position: absolute;
+  right: var(--space-slider-value-right);
+  top: 50%;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.value {
+  position: absolute;
+  top: 50%;
+  right: var(--space-slider-value-right);
+  transform: translateY(-50%);
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  line-height: var(--font-line-height);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  filter: opacity(var(--busy));
+  transition: filter var(--motion-color-fade-ms) ease-out;
+}
+
+.value:disabled {
+  cursor: default;
+}
+
+.value:focus {
+  outline: none;
+}
+
+.value:focus-visible {
+  outline: var(--size-focus-ring) solid var(--color-accent);
+  outline-offset: 4px;
+  border-radius: var(--radius-round);
+}
+
+/* "Thinking" glow: light along the inside edge that melts into the row, like Siri's edge glow.
+   .glow clips to the row's shape (and fades in and out). .glowLight holds the coloured layers and
+   an edge mask: fully on at the edge, easing out towards the middle, so there's no line anywhere.
+   Only transform and opacity move, so the browser doesn't repaint while it animates. */
+.glow {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-panel);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.glowLight {
+  --rx: var(--size-glow-reach-x);
+  --ry: var(--size-glow-reach-y);
+  position: absolute;
+  inset: 0;
+  opacity: var(--effect-glow-strength);
+  /* Two falloffs added together: from the ends inward, and from the top and bottom inward.
+     The stops follow an ease-out curve, so the light melts away instead of stopping. */
+  -webkit-mask-image:
+    linear-gradient(to right, #000, rgb(0 0 0 / 0.62) calc(var(--rx) * 0.25), rgb(0 0 0 / 0.3) calc(var(--rx) * 0.5), rgb(0 0 0 / 0.1) calc(var(--rx) * 0.75), transparent var(--rx), transparent calc(100% - var(--rx)), rgb(0 0 0 / 0.1) calc(100% - var(--rx) * 0.75), rgb(0 0 0 / 0.3) calc(100% - var(--rx) * 0.5), rgb(0 0 0 / 0.62) calc(100% - var(--rx) * 0.25), #000),
+    linear-gradient(to bottom, #000, rgb(0 0 0 / 0.62) calc(var(--ry) * 0.25), rgb(0 0 0 / 0.3) calc(var(--ry) * 0.5), rgb(0 0 0 / 0.1) calc(var(--ry) * 0.75), transparent var(--ry), transparent calc(100% - var(--ry)), rgb(0 0 0 / 0.1) calc(100% - var(--ry) * 0.75), rgb(0 0 0 / 0.3) calc(100% - var(--ry) * 0.5), rgb(0 0 0 / 0.62) calc(100% - var(--ry) * 0.25), #000);
+  mask-image:
+    linear-gradient(to right, #000, rgb(0 0 0 / 0.62) calc(var(--rx) * 0.25), rgb(0 0 0 / 0.3) calc(var(--rx) * 0.5), rgb(0 0 0 / 0.1) calc(var(--rx) * 0.75), transparent var(--rx), transparent calc(100% - var(--rx)), rgb(0 0 0 / 0.1) calc(100% - var(--rx) * 0.75), rgb(0 0 0 / 0.3) calc(100% - var(--rx) * 0.5), rgb(0 0 0 / 0.62) calc(100% - var(--rx) * 0.25), #000),
+    linear-gradient(to bottom, #000, rgb(0 0 0 / 0.62) calc(var(--ry) * 0.25), rgb(0 0 0 / 0.3) calc(var(--ry) * 0.5), rgb(0 0 0 / 0.1) calc(var(--ry) * 0.75), transparent var(--ry), transparent calc(100% - var(--ry)), rgb(0 0 0 / 0.1) calc(100% - var(--ry) * 0.75), rgb(0 0 0 / 0.3) calc(100% - var(--ry) * 0.5), rgb(0 0 0 / 0.62) calc(100% - var(--ry) * 0.25), #000);
+  animation: breathe var(--motion-glow-breath-ms) ease-in-out infinite;
+}
+
+/* The hues along the edges: a strip three rows wide with the palette repeating, sliding one
+   repeat to the left, then starting over (the repeat makes the jump invisible). */
+.glowBase {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 300%;
+  background: linear-gradient(90deg, var(--color-glow-base)) 0 0 / calc(100% / 3) 100% repeat-x;
+  animation: drift var(--motion-glow-drift-ms) linear infinite;
+  will-change: transform;
+}
+
+/* Soft round pools of stronger colour, taller than the row so they light the top and bottom
+   edges, wandering across and back at different speeds. */
+.glowPool {
+  position: absolute;
+  top: -70%;
+  width: 45%;
+  height: 240%;
+  will-change: transform;
+}
+
+.glowPoolA {
+  left: 0;
+  background: radial-gradient(closest-side, var(--color-glow-pool-a), color-mix(in srgb, var(--color-glow-pool-a) 45%, transparent) 55%, transparent);
+  animation: wanderRight var(--motion-glow-pool-a-ms) ease-in-out infinite alternate;
+}
+
+.glowPoolB {
+  right: 0;
+  background: radial-gradient(closest-side, var(--color-glow-pool-b), color-mix(in srgb, var(--color-glow-pool-b) 45%, transparent) 55%, transparent);
+  animation: wanderLeft var(--motion-glow-pool-b-ms) ease-in-out infinite alternate;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: var(--effect-glow-strength);
+  }
+  50% {
+    opacity: calc(var(--effect-glow-strength) * var(--effect-glow-breath-min));
+  }
+}
+
+@keyframes drift {
+  to {
+    transform: translateX(calc(-100% / 3));
+  }
+}
+
+@keyframes wanderRight {
+  to {
+    transform: translateX(122%);
+  }
+}
+
+@keyframes wanderLeft {
+  to {
+    transform: translateX(-122%);
+  }
+}
+
+/* Reduced motion: the same glow, standing still. */
+@media (prefers-reduced-motion: reduce) {
+  .glowLight,
+  .glowBase,
+  .glowPool {
+    animation: none;
+  }
+}

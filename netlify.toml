@@ -1,0 +1,7 @@
+# Netlify: how to build the public demo page from this repo (it rebuilds on every push to main).
+[build]
+  command = "npm run build:demo"
+  publish = "dist-demo"
+
+[build.environment]
+  NODE_VERSION = "22"

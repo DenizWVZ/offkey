@@ -1,0 +1,102 @@
+/* The grabbable area is taller than the bar, so it's easy to hit. */
+.bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: var(--size-progress-hit-area);
+  margin: calc((var(--size-progress-bar) - var(--size-progress-hit-area)) / 2) 0;
+  cursor: pointer;
+  touch-action: none; /* dragging on touch screens scrubs instead of scrolling the page */
+  user-select: none;
+}
+
+.unusable {
+  cursor: default;
+}
+
+/* Dimmed while it can't be used (during an ad), like the dimmed buttons. Not before a song has a length. */
+.dimmed {
+  opacity: var(--effect-disabled-opacity);
+}
+
+.bar:focus {
+  outline: none;
+}
+
+.bar:focus-visible .track {
+  outline: var(--size-focus-ring) solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.track {
+  position: relative;
+  flex: 1;
+  height: var(--size-progress-bar);
+  border-radius: var(--radius-round);
+  background: var(--color-progress-track);
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  border-radius: var(--radius-round);
+  background: var(--color-progress-fill);
+}
+
+/* As wide as the Speed and Vocals handles, a little shorter. Centered on the playhead. */
+.handle {
+  position: absolute;
+  top: 50%;
+  width: var(--size-handle-width);
+  height: var(--size-progress-handle-height);
+  margin: calc(var(--size-progress-handle-height) / -2) 0 0 calc(var(--size-handle-width) / -2);
+  border-radius: var(--radius-round);
+  background: var(--color-handle);
+  pointer-events: none;
+}
+
+/* Cue markers sit over the bar, under the handle. The layer itself lets clicks through to the bar. */
+.markers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.marker {
+  position: absolute;
+  top: 50%;
+  width: var(--size-cue-marker-hit-area);
+  height: var(--size-cue-marker-hit-area);
+  margin: calc(var(--size-cue-marker-hit-area) / -2) 0 0 calc(var(--size-cue-marker-hit-area) / -2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.markerDot {
+  width: var(--size-cue-marker);
+  height: var(--size-cue-marker);
+  border-radius: var(--radius-round);
+  background: var(--cue);
+  box-shadow: 0 0 0 var(--size-cue-marker-ring) var(--color-panel); /* the cut-out look */
+}
+
+/* The cue's time, above the marker on hover. Kept minimal. */
+.markerTime {
+  position: absolute;
+  bottom: calc(50% + var(--size-cue-marker) / 2 + var(--space-cue-time-lift));
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-cue-time);
+  letter-spacing: var(--font-tracking-time);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--motion-cue-time-fade-ms) ease-out;
+}
+
+.marker:hover .markerTime {
+  opacity: 1;
+}

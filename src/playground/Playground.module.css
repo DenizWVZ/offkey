@@ -1,0 +1,35 @@
+/* Playground page only, not part of the widget. */
+:global(html, body) {
+  margin: 0;
+  background: #0f0f0f; /* YouTube's dark background */
+}
+
+.page {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* Where the widget floats on this page: `placement` in tokens.ts, like on a real page.
+   Stays put while the page scrolls. */
+.widgetSlot {
+  position: fixed;
+}
+
+/* Picks the song to play. Bottom right, out of the widget's way. */
+.pick {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  padding: 10px 16px;
+  border: 1px solid #3f3f3f;
+  border-radius: 999px;
+  background: #272727;
+  color: #f1f1f1;
+  font: 500 14px/1 system-ui, sans-serif;
+  cursor: pointer;
+}
+
+.pick:hover {
+  background: #3f3f3f;
+}

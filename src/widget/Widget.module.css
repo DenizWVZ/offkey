@@ -1,0 +1,26 @@
+.card {
+  box-sizing: border-box;
+  width: var(--size-widget-width);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-card-padding-top) var(--space-card-padding) var(--space-card-padding);
+  background: var(--color-surface);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  font-family: var(--font-family);
+  font-weight: var(--font-weight);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Everything under the header: the panels, evenly spaced. */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-card-gap);
+}
+
+.player {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-player-gap);
+}
