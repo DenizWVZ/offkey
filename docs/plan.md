@@ -35,6 +35,22 @@ Getting onto the Chrome Web Store: a distinct name, an icon, the store listing
   YouTube enables its own next button later, ours may stay dimmed. Not confirmed.
 - The two check scripts each start Chrome their own way; could share code.
 
+## Future: other sites (scope properly before building)
+Idea: bring Offkey to sites beyond YouTube, starting with SoundCloud. Only researched so far
+(2026-10-05); needs a proper look and a plan before any work.
+- **SoundCloud first.** Its web player plays an `<audio>` element fed through Media Source (MP3, Opus
+  or AAC in short pieces), so Pitch, Speed and Cues should carry over through the `player` interface,
+  and the audio tap (`hook.ts`) should mostly work as it is.
+- **Rough approach:** a SoundCloud version of the page-specific parts (finding the player, track info,
+  prev/next, telling songs apart, ads if any), an AAC/MP3 decoder next to `webm.ts` for Vocals, and
+  SoundCloud added to `manifest.json`. SoundCloud uses Web Audio itself (fades), so Offkey would need
+  to connect to its audio before SoundCloud does.
+- **To check when scoping:** whether premium (Go+) tracks are encrypted (then no Vocals on those),
+  SoundCloud's terms, and anything else site-specific.
+- **Not planned:** Spotify, Apple Music and similar. Their audio is encrypted, so Vocals can't work as
+  built, and Spotify's developer policy bans pitch and speed changes. Capturing a tab's whole sound
+  (works on any site) was also considered: no Speed, Vocals only live, and a permission prompt each time.
+
 ## Model file
 Not in git (`public/models/`). `scripts/fetch-model.mjs` downloads it from Ultimate Vocal Remover's
 official release and checks its fingerprint; `npm run build:ext` and `npm run build:demo` run it.
