@@ -1,7 +1,6 @@
 # Plan: where things stand
 
-Locked decisions live in `CLAUDE.md`. How we got here (milestones 1–3, measurements, model
-comparison, Cues): `docs/history.md`.
+How we got here (milestones 1–3, measurements, model comparison, Cues): `docs/history.md`.
 
 ## Now: publishing (branch `publishing`)
 Getting onto the Chrome Web Store: a distinct name, an icon, the store listing

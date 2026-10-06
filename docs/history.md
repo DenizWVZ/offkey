@@ -3,7 +3,7 @@
 The old working plan, kept as a record of decisions and measurements. It is **not current**: many
 files named here were later removed or renamed (the waveform scrubber, `analyser.ts`, the
 center-channel vocal reducer, the model lab `lab.html` and `src/lab/`). For where things stand now,
-see `docs/plan.md`; for locked decisions, see `CLAUDE.md`.
+see `docs/plan.md`.
 
 ## Context
 Milestone 1 is committed (`6b4f0d6`): the widget matches the Figma mock, floats top left over the YouTube screenshot, and play/pause controls the real MP3 through `src/audio/player.ts`. Milestone 2 turns the static visuals into live ones and makes the controls do something. It follows your order: **scrubber → live visuals → audio controls → interactions → polish.** Each stage is small and gets checked in the browser before the next one. Detailed choices get settled at the start of each stage, not all now.

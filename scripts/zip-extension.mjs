@@ -2,7 +2,7 @@
 // release/offkey-<version>.zip (the version comes from src/extension/manifest.json).
 //   npm run zip
 // Unzipped, it's one folder, `offkey/`, to load in chrome://extensions (Developer mode → Load unpacked).
-// Uses macOS's built-in `zip`; nothing to install. Publish it as a GitHub release (see CLAUDE.md).
+// Uses macOS's built-in `zip`; nothing to install. Publish it as a GitHub release.
 
 import { execFileSync } from 'node:child_process'
 import { cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync } from 'node:fs'

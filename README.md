@@ -47,7 +47,7 @@ The build downloads the vocal model (30 MB) from Ultimate Vocal Remover's offici
 
 React and TypeScript (Vite). Pitch and speed run through Signalsmith Stretch; vocal separation runs the
 UVR-MDX-NET model with ONNX Runtime Web, on the graphics chip where available. Design values live in
-`src/widget/tokens.ts`. Working notes: `CLAUDE.md`, `docs/plan.md` and `docs/history.md`.
+`src/widget/tokens.ts`. Working notes: `docs/plan.md` and `docs/history.md`.
 
 ## Credits and licence
 
